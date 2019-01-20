@@ -5,23 +5,33 @@ import java.util.Scanner;
 public class Calendar {
 
 	private static final int[] MAX_DAYS = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-
+	private static final String PROMPT = "Cal> ";
+	
 	public static void main(String[] args) {
 		// 숫자를 입력받아 해당하는 달의 최대 일수를 출력하는 프로그램.
 		Scanner sc = new Scanner(System.in);
 		Calendar cal = new Calendar();
-		System.out.println("반복횟수를 입력하세요. : ");
-		int[] month = new int[sc.nextInt()];
 		
-		System.out.println("월을 입력하세요.");
-		for(int i = 0; i < month.length; i++) {
-			month[i] = sc.nextInt();
+		
+//		System.out.println("반복횟수를 입력하세요. : ");
+//		int repeat=sc.nextInt();
+		
+		
+		int month = 0;
+		while(true) {
+			System.out.println("월을 입력하세요.(-1 입력시 종료)");
+			System.out.print(PROMPT);
+			month = sc.nextInt();
+			if(month == -1) {
+				break;
+			}
+			if(month > 12) {
+				continue;
+			}
+			System.out.printf("%d월은 %d일까지 있습니다. \n\n", month, cal.getMaxDaysOfMonth(month));
 		}
 		
-		for(int i = 0; i < month.length; i++) {
-			System.out.printf("%d월은 %d일까지 있습니다. \n", month[i], cal.getMaxDaysOfMonth(month[i]));
-		}
-
+		System.out.println("Bye~");
 		sc.close();
 	}
 
