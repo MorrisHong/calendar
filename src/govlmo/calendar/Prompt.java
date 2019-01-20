@@ -20,7 +20,12 @@ public class Prompt {
 //		프롬프트를 출력한다.
 
 		int month = 0;
+		int year = -1;
 		while (true) {
+			
+			System.out.println("년도를 입력하세요.(-1 입력시 종료)");
+			System.out.print(PROMPT);
+			year = sc.nextInt();
 			System.out.println("월을 입력하세요.(-1 입력시 종료)");
 			System.out.print(PROMPT);
 			month = sc.nextInt();
@@ -30,7 +35,7 @@ public class Prompt {
 			if (month > 12 || month == 0) {
 				continue;
 			}
-			cal.printSampleCal(2018, month);
+			cal.printSampleCal(year, month);
 		}
 
 		System.out.println("Bye~");
