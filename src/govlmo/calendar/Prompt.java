@@ -10,7 +10,6 @@ public class Prompt {
 	 */
 	public int parseDay(String week) {
 		//(SU, MO, TU, WE, TH, FR, SA)
-
 		switch(week) {
 		case "SU" : return 0;
 		case "MO" : return 1;
@@ -21,7 +20,6 @@ public class Prompt {
 		case "SA" : return 6;
 		default : return -1;
 		}
-
 	}
 
 	public void runPrompt() {
@@ -40,7 +38,6 @@ public class Prompt {
 
 		int month = 0;
 		int year = -1;
-		int weekDay = 0;
 		
 		while (true) {
 			System.out.println("년도를 입력하세요.(-1 입력시 종료)"); 
@@ -54,11 +51,8 @@ public class Prompt {
 			if(month == -1) break;
 			if(month > 12 || month < 1) continue;
 			
-			System.out.println("첫째 날의 요일을 입력하세요.(SU, MO, TU, WE, TH, FR, SA)");
-			String strWeekday = sc.next();
-			weekDay = parseDay(strWeekday);
 			
-			cal.printSampleCal(year, month, weekDay);
+			cal.printSampleCal(year, month);
 		}
 
 		System.out.println("Bye~");
