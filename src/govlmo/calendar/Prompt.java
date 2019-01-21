@@ -3,7 +3,26 @@ package govlmo.calendar;
 import java.util.Scanner;
 
 public class Prompt {
-	private static final String PROMPT = "Cal> ";
+	/**
+	 * 
+	 * @param week 요일명
+	 * @return	0~6(Sunday 0, Saturday 6
+	 */
+	public int parseDay(String week) {
+		//(SU, MO, TU, WE, TH, FR, SA)
+
+		switch(week) {
+		case "SU" : return 0;
+		case "MO" : return 1;
+		case "TU" : return 2;
+		case "WE" : return 3;
+		case "TH" : return 4;
+		case "FR" : return 5;
+		case "SA" : return 6;
+		default : return -1;
+		}
+
+	}
 
 	public void runPrompt() {
 		// 숫자를 입력받아 해당하는 달의 최대 일수를 출력하는 프로그램.
@@ -21,21 +40,25 @@ public class Prompt {
 
 		int month = 0;
 		int year = -1;
+		int weekDay = 0;
+		
 		while (true) {
-			
-			System.out.println("년도를 입력하세요.(-1 입력시 종료)");
-			System.out.print(PROMPT);
+			System.out.println("년도를 입력하세요.(-1 입력시 종료)"); 
+			System.out.print("Year > ");
 			year = sc.nextInt();
+			if(year == -1) break;
+			
 			System.out.println("월을 입력하세요.(-1 입력시 종료)");
-			System.out.print(PROMPT);
+			System.out.print("Month > ");
 			month = sc.nextInt();
-			if (month == -1) {
-				break;
-			}
-			if (month > 12 || month == 0) {
-				continue;
-			}
-			cal.printSampleCal(year, month);
+			if(month == -1) break;
+			if(month > 12 || month < 1) continue;
+			
+			System.out.println("첫째 날의 요일을 입력하세요.(SU, MO, TU, WE, TH, FR, SA)");
+			String strWeekday = sc.next();
+			weekDay = parseDay(strWeekday);
+			
+			cal.printSampleCal(year, month, weekDay);
 		}
 
 		System.out.println("Bye~");
@@ -47,4 +70,3 @@ public class Prompt {
 		p.runPrompt();
 	}
 }
-	

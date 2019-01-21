@@ -1,7 +1,5 @@
 package govlmo.calendar;
 
-import java.util.Scanner;
-
 public class Calendar {
 
 	private static final int[] MAX_DAYS = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
@@ -25,16 +23,31 @@ public class Calendar {
 		
 	}
 
-	public void printSampleCal(int year, int month) {
+	public void printSampleCal(int year, int month, int weekDay) {
+		int maxDay = getMaxDaysOfMonth(year, month);
+		int count = 7 - weekDay;
+		int delim = (count < 7) ? count : 0;
+		
+		System.out.println(year + ", " + month + ", " + weekDay);
 		System.out.printf("   <<%4d년 %3d월>>\n", year, month);
 		System.out.println(" 일 월 화 수 목 금 토");
 		System.out.println("----------------------");
 		
-		int maxDay = getMaxDaysOfMonth(year, month);
-		
-		for(int i = 1; i <= maxDay; i++) {
+		//print black space
+		for(int i = 0; i < weekDay; i++) {
+			System.out.print("   ");
+		}
+		//print first line
+		for(int i = 1; i <= count; i++) {
 			System.out.printf(" %2d",i);
-			if( i % 7 == 0) {
+		}
+		System.out.println();
+		
+		//print second line to last
+		count++;
+		for(int i = count; i <= maxDay; i++) {
+			System.out.printf(" %2d",i);
+			if( i % 7 == delim) {
 				System.out.println();
 			}
 		}
